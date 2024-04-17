@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Edit Tracker{% endblock %}
+{% block content %}
+
+<h2 align="center" class="card-header text-capitalize" style="background: blanchedalmond">Welcome, {{ user.fullname }}</h2>
+
+<style>
+    .center {
+        margin: auto;
+        width: 30%;
+        padding: 10px;
+    }
+</style>
+
+<form method="post">
+    <div class="container emp-profile shadow-lg" style="padding-top: 30px">
+        <div class="card">
+        <article class="card-body">
+
+            <h3 class="card-title mb-4 mt-1 center">Edit Tracker {{tracker.name}}</h3>
+
+            <form>
+                <div class="form-group center">
+                     <label for="name">Name</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            name="name"
+                            placeholder="Enter tracker name"
+                            maxlength="30"
+                            style="width: 300px; border-radius: 10px; text-align: center"
+                            value="{{ tracker.name }}"
+                        />
+                </div>
+
+                <div class="form-group center">
+                    <label for="description">Description</label>
+                        <textarea
+                            class="form-control"
+                            id="description"
+                            name="description"
+                            placeholder="Enter tracker description"
+                            maxlength="200"
+                            style="width: 300px; border-radius: 10px; text-align: center"
+                            >{{ tracker.description }}
+                        </textarea>
+                </div>
+
+                <div class="form-group center">
+                    <label style="padding-top: 10px" for="type">Tracker Type</label>
+                        <select style="width: 300px;border-radius: 10px; text-align: center" id="type"  class="form-control"  name="type" required>
+                            <option value="{{ tracker.tracker_type }}">{{ tracker.tracker_type }}</option>
+                            <option value="Numerical">Numerical</option>
+                            <option value="Multiple Choice">Multiple Choice</option>
+                            <option value="Boolean">Boolean</option>
+                        </select>
+                </div>
+
+            <div class="row justify-content-center ">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block"> Update Tracker </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+        </article>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

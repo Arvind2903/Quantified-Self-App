@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %}Edit Log{% endblock %}
+{% block content %}
+
+<h2 align="center" class="card-header text-capitalize" style="background: blanchedalmond">Welcome, {{ user.fullname }}</h2>
+
+<style>
+    .center {
+        margin: auto;
+        width: 30%;
+        padding: 10px;
+    }
+</style>
+
+<form method="post">
+    <div class="container emp-profile shadow-lg" style="padding-top: 30px">
+        <div class="card">
+        <article class="card-body">
+
+            <h3 class="card-title mb-4 mt-1 center">Edit Log {{log.id}} for {{tracker.name}}</h3>
+
+                <form>
+                    <div class="form-group center">
+                        <label for="date">When: </label>
+                            <input
+                                type="datetime-local"
+                                class="form-control"
+                                id="date"
+                                name="date"
+                                style="width: 300px; border-radius: 10px; text-align: center"
+                                value="{{log.timestamp}}"
+                            />
+                    </div>
+
+                    <div class="form-group center">
+                        <label for="value">Value: </label>
+                        {% if tracker.tracker_type=='Numerical'  %}
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="value"
+                                name="value"
+                                placeholder="Enter Number"
+                                maxlength="30"
+                                style="width: 300px; border-radius: 10px; text-align: center"
+                                value="{{log.value}}"
+                            />
+
+                        {% elif tracker.tracker_type=='Multiple Choice' %}
+                            <select style="width: 300px;text-align: center;border-radius: 10px;" id="value"  class="form-control"  name="value" required>
+                                <option value="{{log.value}}">{{log.value}}</option>
+                                <option value="Happy">Happy</option>
+                                <option value="Sad">Sad</option>
+                                <option value="Angry">Angry</option>
+                                <option value="Depressed">Depressed</option>
+                                <option value="Anxious">Anxious</option>
+
+                                </select>
+
+
+                        {% elif tracker.tracker_type=='Boolean' %}
+                            <br>
+                            {% if log.value=='Yes' %}
+                            <input type="radio" id="value" name="value" value="{{log.value}}" checked>
+                            <label for="value">{{log.value}}</label><br>
+                            <input type="radio" id="value" name="value" value="No">
+                            <label for="value">No</label><br>
+                            {% else %}
+                            <input type="radio" id="value" name="value" value="Yes">
+                            <label for="value">Yes</label><br>
+                            <input type="radio" id="value" name="value" value="{{log.value}}" checked>
+                            <label for="value">{{log.value}}</label><br>
+                            {% endif %}
+
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group center">
+                        <label for="notes">Notes: </label>
+                            <textarea
+                                class="form-control"
+                                id="notes"
+                                name="notes"
+                                placeholder="Enter log notes"
+                                maxlength="200"
+                                style="width: 300px; border-radius: 10px; text-align: center"
+                                >{{log.notes}}
+                            </textarea>
+                    </div>
+
+                    <br>
+
+                    <div class="row justify-content-center ">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block"> Update Log </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+        </article>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

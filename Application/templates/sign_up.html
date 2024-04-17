@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+
+<form method="post">
+    <div class="container emp-profile shadow-lg" style="padding-top: 30px">
+        <div class="card">
+        <article class="card-body">
+
+            <h4 class="card-title mb-4 mt-1">Sign Up</h4>
+
+                <form>
+                    <div class="form-group">
+                        <label for="email">Full Name</label>
+                            <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            maxlength="30"
+                            style="width: 300px;text-align: center"
+                            required
+                            />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                            <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            maxlength="35"
+                            style="width: 300px;text-align: center"
+                            required
+                            />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City</label>
+                            <select style="width: 300px;text-align: center" id="city"  class="form-control"  name="city" required>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Bengaluru">Bengaluru</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Ahmedabad">Ahmedabad</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="Surat">Surat</option>
+                            <option value="Jaipur">Jaipur</option>
+                            <option value="Lucknow">Lucknow</option>
+                            <option value="Kanpur">Kanpur</option>
+                            <option value="Nagpur">Nagpur</option>
+                            <option value="Indore">Indore</option>
+                            <option value="Thane">Thane</option>
+                            <option value="Madurai">Madurai</option>
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password1">Password</label>
+                            <input
+                            type="password"
+                            class="form-control"
+                            id="password1"
+                            name="password1"
+                            placeholder="Enter your password"
+                            maxlength="20"
+                            style="width: 300px;text-align: center"
+                            required
+                            />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password2">Confirm Password</label>
+                             <input
+                            type="password"
+                            class="form-control"
+                            id="password2"
+                            name="password2"
+                            placeholder="Confirm your password"
+                            maxlength="20"
+                            style="width: 300px;text-align: center"
+                            required
+                            />
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block"> Register </button>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </article>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

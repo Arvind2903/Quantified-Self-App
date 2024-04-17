@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/index.css" />
+     <title>{% block title %}Home{% endblock %}</title>
+</head>
+<body>
+
+ <div class="p-5 bg-secondary text-dark text-center" style="background-image: url('https://cdn.dribbble.com/users/501986/screenshots/15114330/media/784cd68582196119705c34e5a0c00e2c.gif');">
+
+      <h1 style="color:black;" ><b>Quantified Self App</b></h1>
+     <p style="color:black;" ><b>Track And Measure Yourself!</b></p>
+    </div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav">
+
+            {% if user.is_authenticated %}
+          <a class="nav-item nav-link" id="home" href="/">Home</a>
+            <a class="nav-item nav-link" id="profile" href="/view-profile">View Profile</a>
+          <a class="nav-item nav-link" id="logout" href="/logout" >Logout</a>
+            {% else %}
+          <a class="nav-item nav-link" id="login" href="/login">Login</a>
+          <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+            {% endif %}
+
+        </div>
+      </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+
+                {% for category, message in messages %}
+
+                    {% if category == 'error' %}
+                        <div align="center">
+                            <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                              {{ message }}
+                              <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div align="center">
+                            <div class="alert alert-success alter-dismissable fade show" role="alert">
+                              {{ message }}
+                              <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+
+        {% endif %}
+    {% endwith %}
+
+
+{% block content %}
+
+
+{% endblock %}
+
+
+<br><br><br>
+
+
+<div class="mt-5 p-5 bg-dark text-white text-center">
+    <h5>Quantified Self Application</h5>
+
+</div>
+
+</body>
+</html>

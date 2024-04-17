@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<h2 align="center" class="card-header text-capitalize" style="background: blanchedalmond">Welcome, {{ user.fullname }}</h2>
+
+<br>
+<div class="container emp-profile shadow-lg" style="padding-top: 30px">
+
+<table class="table" style="border-radius: 10px;">
+  <thead class="thead-dark" style="border-radius: 10px;">
+    <tr>
+      <th scope="col">Tracker</th>
+      <th scope="col">Description</th>
+      <th scope="col">Add Log</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for tracker in tracker %}
+    {% if tracker.user_id==user.id  %}
+    <tr>
+        {% set tracker_id=tracker.id %}
+      <td><a href="{{ url_for('views.view_tracker', record_id = tracker_id) }}">{{tracker.name}}</a></td>
+      <td>{{tracker.description}}</td>
+      <td><a href="{{ url_for('views.add_log', record_id = tracker_id) }}" class="btn" style="border-radius: 10px; font-size: 20px">✚</a></td>
+      <td>
+
+  <div aria-labelledby="dropdownMenuButton">
+    <a href="{{ url_for('views.edit_tracker', record_id = tracker_id) }}">Edit Tracker</a><br>
+    <a href="{{ url_for('views.delete_tracker', record_id = tracker_id) }}">Remove Tracker</a>
+  </div>
+
+      </td>
+    </tr>
+{% endif %}
+    {% endfor %}
+
+  </tbody>
+</table>
+
+        <div align="center">
+            <a href="/add-tracker-page" class="btn" style="border-radius: 15px;
+            background: -webkit-linear-gradient(bottom, #357bf1, #007cfc);"><b>Add Tracker</b></a>
+        </div>
+</div>
+{% endblock %}
